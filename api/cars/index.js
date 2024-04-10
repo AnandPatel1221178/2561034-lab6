@@ -39,7 +39,7 @@ module.exports = async function (context, req) {
     } 
     else if (req.method === 'DELETE') {
         try {
-            const id = req.params.id; // Extract id from request parameters
+            const id = 0; // Extract id from request parameters
             console.log('Received DELETE request for ID:', id);
             console.log('Existing cars:', cars);
             const index = cars.findIndex(car => car.id === id);
