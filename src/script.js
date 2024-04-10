@@ -60,29 +60,28 @@ carForm.addEventListener('submit', event => {
 // Function to remove a car
 function removeCar(index) {
     const carId = cars[index].id;
-    console.log("Attempting to delete car with id:", carId); // Add logging to track the ID
+    console.log("Attempting to delete car with id:", carId);
 
-    fetch(`./api/cars?${carId}`, {//changes made here
+    fetch(`./api/cars/${carId}`, { // Corrected the endpoint URL
         method: 'DELETE'
     })
         .then(response => {
-         // Enhance error handling
-         if (!response.ok) {
-             console.error("Error deleting car: ", response);
-             throw new Error('Failed to delete car');
-         } 
-         return response.json(); 
-        }) 
-        .then(data => {
-            console.log('Success:', data);
-            const loadCarsBtn = document.getElementById('loadCarsBtn');
-            loadCarsBtn.click();
+            // Check if the response is successful (status code 200-299)
+            if (response.ok) {
+                console.log('Car deleted successfully');
+                const loadCarsBtn = document.getElementById('loadCarsBtn');
+                loadCarsBtn.click();
+            } else {
+                // If response is not successful, throw an error
+                throw new Error(`Failed to delete car: ${response.status} ${response.statusText}`);
+            }
         })
         .catch(error => {
             console.error('Error:', error);
-           alert("Error deleting car. See browser console for details."); // User-friendly error message
+            alert("Error deleting car. See browser console for details."); // User-friendly error message
         });
 }
+
 // Event delegation for remove buttons
 carList.addEventListener('click', event => {
     if (event.target.classList.contains('btn-remove')) {
