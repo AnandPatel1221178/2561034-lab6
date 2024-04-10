@@ -61,6 +61,6 @@ app.post('/cars', (req, res) => {
 });
 
 //start app at localhost:3001
-app.listen(3001, () => {
-    console.log('Server started at http://localhost:3001');
+app.listen(process.env.PORT || 3001, () => {
+    console.log('Server started');
 });
