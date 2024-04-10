@@ -1,4 +1,4 @@
-module.exports = async function (context, req, cars) {
+module.exports = async function (context, req) {
     if (req.method === 'DELETE') {
         try {
             const id = req.params.id; // Extract id from request parameters

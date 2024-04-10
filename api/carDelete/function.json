@@ -6,9 +6,7 @@
       "direction": "in",
       "name": "req",
       "methods": [
-        "delete"
-      ],
-      "route": "cars/{id}"
+      ]
     },
     {
       "type": "http",
