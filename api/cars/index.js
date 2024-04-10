@@ -38,18 +38,24 @@ app.put('/cars/:id', (req, res) => {
 });
 
 //delete car
+
 app.delete('/cars/:id', (req, res) => {
     const id = req.params.id;
     const index = cars.findIndex(car => car.id === id);
-    cars.splice(index, 1);
-    res.json({ message: `Car with id ${id} deleted` });
+    if (index !== -1) {
+        cars.splice(index, 1);
+        res.json({ message: `Car with id ${id} deleted` });
+    } else {
+        res.status(404).json({ message: 'Car not found' });
+    }
 });
 
+
 //add car
+const { v4: uuidv4 } = require('uuid');
 app.post('/cars', (req, res) => {
-    console.log(req);
     const newCar = req.body;
-    console.log(newCar);
+    newCar.id = uuidv4(); // Generate a unique id for the new car
     cars.push(newCar);
     res.json(newCar);
 });
