@@ -63,13 +63,15 @@ function removeCar(index) {
     console.log(cars)
     console.log("Attempting to delete car with id:", carId);
 
-    fetch(`/api/cars/${carId}`, { // Corrected the endpoint URL
-        method: 'DELETE'
+    fetch(`./api/cars?carId=${carId}`, { // Corrected the endpoint URL
+        method: 'DELETE',
+        headers: {'Content-Type': 'application/json'}
     })
         .then(response => {
             // Check if the response is successful (status code 200-299)
             if (response.ok) {
                 console.log('Car deleted successfully');
+                console.log(response)
                 const loadCarsBtn = document.getElementById('loadCarsBtn');
                 loadCarsBtn.click();
             } else {
