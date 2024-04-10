@@ -54,8 +54,7 @@ module.exports = async function (context, req) {
             context.res.status(500).json({ error: 'Internal Server Error' });
         }
     }
-    
-    
+
     else {
         context.res.status(404).json({ error: 'Not Found' });
     }

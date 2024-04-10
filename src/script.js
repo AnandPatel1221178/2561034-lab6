@@ -60,6 +60,7 @@ carForm.addEventListener('submit', event => {
 // Function to remove a car
 function removeCar(index) {
     const carId = cars[index].id;
+    console.log(cars)
     console.log("Attempting to delete car with id:", carId);
 
     fetch(`./api/cars?${carId}`, { // Corrected the endpoint URL
