@@ -62,7 +62,7 @@ function removeCar(index) {
     const carId = cars[index].id;
     console.log("Attempting to delete car with id:", carId);
 
-    fetch(`./api/cars/${carId}`, { // Corrected the endpoint URL
+    fetch(`./api/cars?${carId}`, { // Corrected the endpoint URL
         method: 'DELETE'
     })
         .then(response => {

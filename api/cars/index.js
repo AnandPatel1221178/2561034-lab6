@@ -39,7 +39,7 @@ module.exports = async function (context, req) {
     } 
     else if (req.method === 'DELETE') {
         try {
-            const id = req.params.id;
+            const id = req.params.id; // Extract id from request parameters
             console.log('Received DELETE request for ID:', id);
             console.log('Existing cars:', cars);
             const index = cars.findIndex(car => car.id === id);
@@ -54,6 +54,7 @@ module.exports = async function (context, req) {
             context.res.status(500).json({ error: 'Internal Server Error' });
         }
     }
+    
     
     else {
         context.res.status(404).json({ error: 'Not Found' });
