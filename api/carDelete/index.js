@@ -1,11 +1,13 @@
-module.exports = async function (context, req) {
+module.exports = async function (context, req, cars) {
     if (req.method === 'DELETE') {
         try {
             const id = req.params.id; // Extract id from request parameters
             console.log('Received DELETE request for ID:', id);
             console.log('Existing cars:', cars);
-            const index = cars.findIndex(car => car.id === id);
-            if (index !== -1) {
+            const car = cars.find(car => car.id === id);
+            // const index = cars.find(car => car.id === id);
+            if (car) {
+                const index = cars.indexOf(car);
                 cars.splice(index, 1);
                 context.res.status(200).json({ message: `Car with id ${id} deleted` });
             } else {
@@ -13,7 +15,7 @@ module.exports = async function (context, req) {
             }
         } catch (error) {
             console.error('Error handling DELETE request:', error);
-            context.res.status(500).json({ error: 'Internal Server Error' });
+            context.res.status(500).json({ error: 'Internal Server Error', cars });
         }
     }
 
