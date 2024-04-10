@@ -62,7 +62,7 @@ function removeCar(index) {
     const carId = cars[index].id;
     console.log("Attempting to delete car with id:", carId); // Add logging to track the ID
 
-    fetch(`./api/cars/${carId}`, {
+    fetch(`./api/cars?${carId}`, {
         method: 'DELETE'
     })
         .then(response => {
